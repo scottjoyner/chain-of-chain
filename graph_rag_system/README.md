@@ -1,4 +1,5 @@
 ## Directory structure:
+```
 graph_rag_system/
 ├── app.py
 ├── api/
@@ -21,7 +22,7 @@ graph_rag_system/
 ├── docker-compose.yml
 ├── .env
 └── .gitignore
-
+```
 
 # === README.md additions ===
 ## API Usage
@@ -33,7 +34,6 @@ Send a POST request:
 ```bash
 curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "What is our hiring plan?"}'
 ```
-# === docker-compose.yml ===
 
 
 
@@ -55,15 +55,6 @@ venv/
 .DS_Store
 
 
-# === requirements.txt ===
-langchain
-openai
-redis
-neo4j
-faiss-cpu
-fastapi
-uvicorn
-python-dotenv
 
 
 # === README.md ===
