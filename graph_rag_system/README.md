@@ -1,61 +1,40 @@
-# Directory structure:
-# graph_rag_system/
-# ├── app.py
-# ├── api/
-# │   └── server.py
-# ├── scripts/
-# │   └── populate_graph.py
-# ├── graph/
-# │   ├── cot_logger.py
-# │   ├── graph_query.py
-# ├── cache/
-# │   └── redis_cache.py
-# ├── llm/
-# │   ├── rag_chain.py
-# │   └── embeddings.py
-# ├── data/
-# │   └── sample_docs/
-# ├── requirements.txt
-# ├── README.md
-# ├── Dockerfile
-# ├── docker-compose.yml
-# ├── .env
-# └── .gitignore
+## Directory structure:
+graph_rag_system/
+├── app.py
+├── api/
+│   └── server.py
+├── scripts/
+│   └── populate_graph.py
+├── graph/
+│   ├── cot_logger.py
+│   ├── graph_query.py
+├── cache/
+│   └── redis_cache.py
+├── llm/
+│   ├── rag_chain.py
+│   └── embeddings.py
+├── data/
+│   └── sample_docs/
+├── requirements.txt
+├── README.md
+├── Dockerfile
+├── docker-compose.yml
+├── .env
+└── .gitignore
 
+
+# === README.md additions ===
+## API Usage
+Launch FastAPI server:
+```bash
+uvicorn api.server:app --reload
+```
+Send a POST request:
+```bash
+curl -X POST http://localhost:8000/query -H "Content-Type: application/json" -d '{"query": "What is our hiring plan?"}'
+```
 # === docker-compose.yml ===
-version: '3.8'
-services:
-  neo4j:
-    image: neo4j:5
-    environment:
-      - NEO4J_AUTH=neo4j/password
-    ports:
-      - "7474:7474"
-      - "7687:7687"
-    volumes:
-      - neo4j_data:/data
 
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    depends_on:
-      - neo4j
-      - redis
-    env_file:
-      - .env
-    command: uvicorn api.server:app --host 0.0.0.0 --port 8000 --reload
-
-volumes:
-  neo4j_data:
-  redis_data:
 
 
 # === .env ===
